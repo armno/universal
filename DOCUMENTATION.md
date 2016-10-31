@@ -168,7 +168,7 @@ of the differences will be in the NgModule provider imports that you need to spe
 side app. 
   * Note how client.ts uses the following code to have Angular Universal cooridinate the browser side bootstrap process:
   
-```
+```JavaScript
 // important for this to be first in your client.ts file so polyfills can be properly applied
 import 'angular2-universal-polyfills';
 import { platformUniversalDynamic } from 'angular2-universal';
@@ -192,7 +192,7 @@ that is when app.node.module.ts and app.browser.module.ts would be different.
 Final note is that in your imports for your Universal app on both the browser
 and node NgModule, you need to add UniversalModule:
 
-```
+```JavaScript
 import { UniversalModule } from 'angular2-universal';
 @NgModule({
   imports: [
@@ -215,13 +215,13 @@ it may be useful to look at things from a slightly different perspective. Below 
 
 In both our server and client entry points, we have this at the very top:
 
-```
+```JavaScript
 import 'angular2-universal-polyfills';
 ```
 
 What is this doing? Well, some of these are polyfills needed with most Angular apps:
 
-```
+```JavaScript
 import 'es6-promise';
 import 'es6-shim';
 import 'reflect-metadata';
@@ -229,8 +229,7 @@ import 'reflect-metadata';
 
 The important part to be aware of is the Zone patch:
 
-```
-
+```JavaScript
 // for node:
 require('zone.js/dist/zone-node.js');
 require('zone.js/dist/long-stack-trace-zone');
@@ -264,8 +263,7 @@ are some convenience functions that wrap a lot of low level functionality.
 It is possible to drop down a level to a more complex API, but at the high
 level, bootstrapping looks like this:
 
-```
-
+```JavaScript
 // browser side bootstrap:
 platformRef.bootstrapModule(MainModule);
 
@@ -298,7 +296,7 @@ is to get access to the Express request and response objects in your
 code. As you can see, these objects are passed into the server side
 bootstrap:
 
-```
+```JavaScript
 app.get('/*', (req, res) => {
   res.render('index', {
     req,  // Express request object
